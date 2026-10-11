@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String
+  name          String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  sessions      ResearchSession[]
+  savedReports  SavedReport[]
+  usageRecords  UsageRecord[]
+  settings      UserSettings?
+}
+
+model UserSettings {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  theme     String   @default("dark")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ResearchSession {
+  id          String   @id @default(uuid())
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  type        String   // "youtube" or "web"
+  query       String
+  metadata    String?  // JSON string containing video metadata or search params
+  status      String   @default("pending") // "pending", "completed", "failed"
+  result      String?  // JSON string containing the final summary/report
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  messages    ResearchMessage[]
+}
+
+model ResearchMessage {
+  id          String          @id @default(uuid())
+  sessionId   String
+  session     ResearchSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  role        String          // "user" or "assistant"
+  content     String
+  createdAt   DateTime        @default(now())
+}
+
+model SavedReport {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  type        String   // "youtube" or "web"
+  content     String   // JSON string of the saved report
+  createdAt   DateTime @default(now())
+}
+
+model UsageRecord {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action      String   // e.g., "youtube_summary", "web_research", "chat"
+  tokensUsed  Int      @default(0)
+  createdAt   DateTime @default(now())
+}
