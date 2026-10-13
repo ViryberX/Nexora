@@ -1,8 +1,24 @@
 # NEXORA AI — Frontend & Design System Showcase
 
+<p align="center">
+  <a href="https://nexora-viryber.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/🚀%20Live%20Demo-nexora--viryber.vercel.app-6366f1?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+  </a>
+  <a href="https://github.com/viryber-hue/Nexora" target="_blank">
+    <img src="https://img.shields.io/badge/React%2019-Vite-blue?style=for-the-badge&logo=react" alt="Tech" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://nexora-viryber.vercel.app/" target="_blank">
+    <img src="./screenshots/preview.png" alt="Nexora AI Preview" width="100%" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);" />
+  </a>
+</p>
+
 Nexora AI is a modern, high-performance web interface for an autonomous AI research platform. It combines deep web research syntheses, citations, interactive follow-ups, and export tools with a sleek glassmorphism aesthetic.
 
-> **Note**: This repository serves as the public frontend showcase and UI portfolio. Proprietary backend AI workflows, search provider connectors, and serverless execution layers are securely hosted in private infrastructure.
+> 🌐 **Live Application**: [https://nexora-viryber.vercel.app/](https://nexora-viryber.vercel.app/)  
+> 🔒 **Architecture Notice**: This repository serves as the public frontend showcase and UI portfolio. Proprietary backend AI workflows, search provider connectors, and serverless execution layers are securely hosted in private infrastructure.
 
 ---
 
