@@ -1,14 +1,7 @@
 {
-  "version": 2,
-  "functions": {
-    "api/**": {
-      "maxDuration": 60,
-      "includeFiles": "server/**"
-    }
-  },
   "rewrites": [
     {
-      "source": "/((?!api/).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
