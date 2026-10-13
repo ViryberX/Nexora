@@ -1,7 +1,7 @@
 {
   "version": 2,
   "functions": {
-    "api/**/*": {
+    "api/**": {
       "maxDuration": 60,
       "includeFiles": "server/**"
     }

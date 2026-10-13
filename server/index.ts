@@ -21,6 +21,9 @@ app.use(express.json());
 app.use(apiLimiter); // Apply rate limiting to all requests
 
 // Routes
+app.get(['/api/health', '/health'], (_req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
 app.use('/api/research', researchRoutes);
 app.use('/research', researchRoutes); // Fallback if Vercel strips /api
 app.use('/api/admin', adminRoutes);
@@ -39,7 +42,7 @@ if (!process.env.VERCEL && (process.env.NODE_ENV === 'production' || process.env
 }
 
 // Serverless export
-if (process.env.NODE_ENV !== 'production') {
+if (!process.env.VERCEL && process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {
     console.log(`API Server running on port ${PORT}`);
